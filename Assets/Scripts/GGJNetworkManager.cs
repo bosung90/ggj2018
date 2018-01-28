@@ -33,6 +33,10 @@ public class GGJNetworkManager : NetworkManager {
 			color = Color.green;
 		} else if (conn.connectionId.Equals (3)) {
 			color = Color.cyan;
+		} else if (conn.connectionId.Equals (4)) {
+			color = Color.magenta;
+		} else if (conn.connectionId.Equals (5)) {
+			color = Color.yellow;
 		}
 		PlayerController playerController = player.GetComponent<PlayerController> ();
 
