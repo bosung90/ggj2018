@@ -33,7 +33,7 @@ public class GameManager : NetworkBehaviour {
 	}
 
 	[ClientRpc]
-	public void InitPlayerRoles(Dictionary<int, Role> playerRoles){
+	public void RpcInitPlayerRoles(Dictionary<int, Role> playerRoles){
 		this.playerRoles = playerRoles;
 		foreach (int connectionId in playerRoles.Keys) {
 			List<Action> actions = new List<Action> ();
