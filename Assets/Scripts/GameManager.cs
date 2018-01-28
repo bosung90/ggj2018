@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 public class GameManager : NetworkBehaviour {
 
 	public static GameManager Instance;
-	public Dictionary<int, Role> playerRoles = new Dictionary<int, Role>();
+//	public Dictionary<int, Role> playerRoles = new Dictionary<int, Role>();
 	public Dictionary<int, List<Action>> playerActions = new Dictionary<int, List<Action>>();
 
 	public enum Role
@@ -34,7 +34,7 @@ public class GameManager : NetworkBehaviour {
 
 	[ClientRpc]
 	public void RpcInitPlayerRoles(Dictionary<int, Role> playerRoles){
-		this.playerRoles = playerRoles;
+//		this.playerRoles = playerRoles;
 		foreach (int connectionId in playerRoles.Keys) {
 			List<Action> actions = new List<Action> ();
 			actions.Add (new Action{ role = Role.Mobility, point = 1 });
