@@ -18,8 +18,8 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public struct Action {
-		Role role;
-		int point;
+		public Role role;
+		public int point;
 	}
 
 	void Awake() {
@@ -35,7 +35,20 @@ public class GameManager : MonoBehaviour {
 	public void InitPlayerRoles(Dictionary<int, Role> playerRoles){
 		this.playerRoles = playerRoles;
 		foreach (int connectionId in playerRoles.Keys) {
-			
+			List<Action> actions = new List<Action> ();
+			actions.Add (new Action{ role = Role.Mobility, point = 1 });
+			actions.Add (new Action{ role = Role.Mobility, point = 2 });
+			actions.Add (new Action{ role = Role.Hacker, point = 1 });
+			actions.Add (new Action{ role = Role.Hacker, point = 2 });
+			actions.Add (new Action{ role = Role.Combat, point = 1 });
+			actions.Add (new Action{ role = Role.Combat, point = 2 });
+			actions.Add (new Action{ role = Role.Transmitter, point = 1 });
+			actions.Add (new Action{ role = Role.Transmitter, point = 2 });
+
+			Role role = playerRoles [connectionId];
+			actions.Add (new Action{ role = role, point = 3 });
+
+			playerActions.Add (connectionId, actions);
 		}
 	}
 }
