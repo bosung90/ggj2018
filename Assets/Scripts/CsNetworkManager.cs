@@ -37,18 +37,9 @@ public class CsNetworkManager : NetworkManager {
     //user difine func
     public void SetupServer()
     {
-        try
-        {
-            StartServer();
-            Debug.Log("SetupServer()");
-            //  NetworkServer.RegisterHandler(MsgType.Connect, OnConnected);
-        }
-        catch (Exception ex)
-        {
-            Debug.Log(ex);
-            throw;
-        }
-
+        bool hasStarted = StartServer();
+        Debug.Log("SetupServer()");
+        //  NetworkServer.RegisterHandler(MsgType.Connect, OnConnected);
 
         if (!this.IsClientConnected() && !NetworkServer.active && this.matchMaker == null)
         {
@@ -67,7 +58,7 @@ public class CsNetworkManager : NetworkManager {
         StartClient();
 
         myClient = new NetworkClient();
-        myClient.Connect("127.0.0.1", 6060);
+		myClient.Connect(this.networkAddress, this.networkPort);
 
     }
 
