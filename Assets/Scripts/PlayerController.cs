@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour
 {
+	
 	void Update()
 	{
 		if (!isLocalPlayer)
@@ -14,4 +15,10 @@ public class PlayerController : NetworkBehaviour
 		transform.Rotate(0, x, 0);
 		transform.Translate(0, 0, z);
 	}
+
+	[ClientRpc]
+	public void RpcSetPlayerColor(Color color) {
+		GetComponent<MeshRenderer> ().material.color = color;
+	}
+
 }
