@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : NetworkBehaviour {
 
 	public static GameManager Instance;
 	public Dictionary<int, Role> playerRoles = new Dictionary<int, Role>();
@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour {
 	public struct Action {
 		public Role role;
 		public int point;
+		public bool isUsed;
 	}
 
 	void Awake() {
