@@ -3,8 +3,10 @@ using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour
 {
-	
-	void Update()
+    [SyncVar]
+    public Color _color;
+    
+    void Update()
 	{
 		if (!isLocalPlayer)
 			return;
@@ -16,9 +18,22 @@ public class PlayerController : NetworkBehaviour
 		transform.Translate(0, 0, z);
 	}
 
+    //sever -> client
 	[ClientRpc]
 	public void RpcSetPlayerColor(Color color) {
-		GetComponent<MeshRenderer> ().material.color = color;
-	}
 
+        _color = color;
+        GetComponent<MeshRenderer> ().material.color = color;
+        Debug.Log("RpcSetPlayerColor");
+
+
+    }
+
+    //client -> sever
+    [Command]
+    void CmdMakePlayer()
+    {
+        Debug.Log("cmd Make Plaeyr");
+        NetworkServer.Spawn(this.gameObject);
+    }
 }
